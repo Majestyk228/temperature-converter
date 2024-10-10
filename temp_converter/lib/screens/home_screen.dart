@@ -20,6 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*appBar: AppBar(
+        title: Text('Convertisseur de température'),
+      ),*/
       backgroundColor: Color.fromARGB(255, 219, 219, 219),
       body: Padding(
         padding: const EdgeInsets.only(left: 64.0, right: 64.0),
