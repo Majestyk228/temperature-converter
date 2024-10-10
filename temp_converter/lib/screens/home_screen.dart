@@ -12,6 +12,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String dropdownValue = list.first;
 
+  // TextField controllers
+  final TextEditingController _input = TextEditingController();
+  final TextEditingController _output = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: 280,
                   child: TextField(
+                    controller: _input,
                     decoration: InputDecoration(
                       labelText: 'Entrez la valeur',
                     ),
@@ -73,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: 280,
                   child: TextField(
+                    controller: _output,
                     decoration: InputDecoration(
                       labelText: 'Votre conversion',
                     ),
@@ -121,7 +127,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 16,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _input.clear();
+                _output.clear();
+              },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white, // Couleur de fond
                 backgroundColor: const Color.fromARGB(
