@@ -7,6 +7,12 @@ void main() async {
   // Must add this line.
   await windowManager.ensureInitialized();
 
+  // Disable resize
+  windowManager.setResizable(false);
+
+  // Disable maximize
+  windowManager.setMaximizable(false);
+
   WindowOptions windowOptions = WindowOptions(
     size: Size(700, 400),
     center: true,
@@ -28,6 +34,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: HomeScreen(),
     );

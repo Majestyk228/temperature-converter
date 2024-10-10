@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:temp_converter/constants/strings.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,14 +20,26 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(left: 64.0, right: 64.0),
         child: Column(
           children: [
-            Text("Unité de départ"),
+            Text(
+              "Unité de départ",
+              style: TextStyle(
+                fontSize: 25, // Taille du texte en pixels
+              ),
+            ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
+                SizedBox(
+                  width: 280,
                   child: TextField(
                     decoration: InputDecoration(
-                      labelText: 'Enter something',
+                      labelText: 'Entrez la valeur',
                     ),
+                    keyboardType: TextInputType.number, // Clavier numérique
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter
+                          .digitsOnly, // N'accepte que des chiffres
+                    ],
                   ),
                 ),
                 DropdownMenu<String>(
@@ -45,14 +58,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-            Text("Unité de conversion"),
+            SizedBox(
+              height: 40,
+            ),
+            Text(
+              "Unité de conversion",
+              style: TextStyle(
+                fontSize: 25, // Taille du texte en pixels
+              ),
+            ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
+                SizedBox(
+                  width: 280,
                   child: TextField(
                     decoration: InputDecoration(
-                      labelText: 'Enter something',
+                      labelText: 'Votre conversion',
                     ),
+                    enabled: false,
                   ),
                 ),
                 DropdownMenu<String>(
@@ -70,15 +94,50 @@ class _HomeScreenState extends State<HomeScreen> {
                   }).toList(),
                 )
               ],
+            ),
+            SizedBox(
+              height: 32,
             ),
             ElevatedButton(
-              //style: style,
               onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.black, // Couleur de fond
+                backgroundColor: Colors.white, // Couleur du texte
+                padding: EdgeInsets.symmetric(
+                    horizontal: 32, vertical: 16), // Padding interne du bouton
+                textStyle: TextStyle(
+                  fontSize: 18, // Taille du texte
+                  fontWeight: FontWeight.bold, // Style du texte
+                ),
+                shape: RoundedRectangleBorder(
+                  // Forme du bouton
+                  borderRadius: BorderRadius.circular(30), // Bordure arrondie
+                ),
+                elevation: 5, // Élévation (ombre)
+              ),
               child: const Text('Calculer'),
             ),
+            SizedBox(
+              height: 16,
+            ),
             ElevatedButton(
-              //style: style,
               onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, // Couleur de fond
+                backgroundColor: const Color.fromARGB(
+                    255, 115, 115, 115), // Couleur du texte
+                padding: EdgeInsets.symmetric(
+                    horizontal: 32, vertical: 16), // Padding interne du bouton
+                textStyle: TextStyle(
+                  fontSize: 18, // Taille du texte
+                  fontWeight: FontWeight.bold, // Style du texte
+                ),
+                shape: RoundedRectangleBorder(
+                  // Forme du bouton
+                  borderRadius: BorderRadius.circular(30), // Bordure arrondie
+                ),
+                elevation: 5, // Élévation (ombre)
+              ),
               child: const Text('Annuler'),
             ),
           ],
