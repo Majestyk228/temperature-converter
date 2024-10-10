@@ -10,7 +10,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String dropdownValue = list.first;
+  String dropdownInputValue = list.first;
+  String dropdownOutputValue = list.first;
 
   // TextField controllers
   final TextEditingController _input = TextEditingController();
@@ -39,6 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     controller: _input,
                     decoration: InputDecoration(
                       labelText: 'Entrez la valeur',
+                      labelStyle:
+                          TextStyle(color: Colors.black), // Couleur du label
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:
+                                Colors.black), // Bordure normale (non grisée)
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                     keyboardType: TextInputType.number, // Clavier numérique
                     inputFormatters: <TextInputFormatter>[
@@ -52,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onSelected: (String? value) {
                     // This is called when the user selects an item.
                     setState(() {
-                      dropdownValue = value!;
+                      dropdownInputValue = value!;
                     });
                   },
                   dropdownMenuEntries:
@@ -81,6 +90,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     controller: _output,
                     decoration: InputDecoration(
                       labelText: 'Votre conversion',
+                      labelStyle:
+                          TextStyle(color: Colors.black), // Couleur du label
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color:
+                                Colors.black), // Bordure normale (non grisée)
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                     enabled: false,
                   ),
@@ -90,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onSelected: (String? value) {
                     // This is called when the user selects an item.
                     setState(() {
-                      dropdownValue = value!;
+                      dropdownOutputValue = value!;
                     });
                   },
                   dropdownMenuEntries:
@@ -105,7 +122,15 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 32,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                var inputValue = int.parse(_input.text);
+                double outputValue = 0;
+
+                outputValue = double.parse(performAction(
+                    dropdownInputValue, dropdownOutputValue, inputValue));
+
+                _output.text = outputValue.toString();
+              },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.black, // Couleur de fond
                 backgroundColor: Colors.white, // Couleur du texte
@@ -154,4 +179,73 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+String performAction(String var1, String var2, int value) {
+  // Combinaison des deux variables dans une seule clé
+  String key = '$var1-$var2';
+  double result = 0;
+
+  switch (key) {
+    case 'Celsius (C°)-Fahrenheit (F°)':
+      // TODO : appeler les fonctions adhéquates
+      result = fromCtoF(value);
+      return ("$result");
+    case 'Celsius (C°)-Kelvin (K)':
+      // TODO : appeler les fonctions adhéquates
+      result = fromCtoK(value);
+      return ("$result");
+    case 'Fahrenheit (F°)-Celsius (C°)':
+      // TODO : appeler les fonctions adhéquates
+      result = fromFtoC(value);
+      return ("$result");
+    case 'Fahrenheit (F°)-Kelvin (K)':
+      // TODO : appeler les fonctions adhéquates
+      result = fromFtoK(value);
+      return ("$result");
+    case 'Kelvin (K)-Fahrenheit (F°)':
+      // TODO : appeler les fonctions adhéquates
+      result = fromKtoF(value);
+      return ("$result");
+    case 'Kelvin (K)-Celsius (C°)':
+      // TODO : appeler les fonctions adhéquates
+      result = fromKtoC(value);
+      return ("$result");
+    case 'Celsius (C°)-Celsius (C°)':
+      return ("$value");
+    case 'Fahrenheit (F°)-Fahrenheit (F°)':
+      return ("$value");
+    case 'Kelvin (K)-Kelvin (K)':
+      return ("$value");
+    default:
+      return ("0");
+  }
+}
+
+// =============================================================================
+// ============================ FONCTIONS DE CALCUL ============================
+// =============================================================================
+
+double fromKtoC(int value) {
+  return value - 273.15;
+}
+
+double fromKtoF(int value) {
+  return (value - 273.15) * 9 / 5 + 32;
+}
+
+double fromFtoK(int value) {
+  return (value - 32) * 5 / 9 + 273.15;
+}
+
+double fromFtoC(int value) {
+  return (value - 32) * 5 / 9;
+}
+
+double fromCtoK(int value) {
+  return value + 273.15;
+}
+
+double fromCtoF(int value) {
+  return (value * 9 / 5) + 32;
 }
