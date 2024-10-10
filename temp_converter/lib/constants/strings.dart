@@ -4,3 +4,13 @@ const List<String> list = <String>[
   'Fahrenheit (F°)',
   'Kelvin (K)'
 ];
+
+// STRINGS
+const inputUnitTxt = "Unité de départ";
+const outputUnitTxt = "Unité de conversion";
+
+const cancelTxt = "Annuler";
+const calculusTxt = "Calculer";
+
+const inputTextfieldTxt = "Entrez la valeur";
+const outpoutTextfieldTxt = "Votre conversion";
