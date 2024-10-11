@@ -14,3 +14,5 @@ const calculusTxt = "Calculer";
 
 const inputTextfieldTxt = "Entrez la valeur";
 const outpoutTextfieldTxt = "Votre conversion";
+
+const creditTxt = "© 2024 Sarah KOUTA-LOPATEY. Tout droit réservés";

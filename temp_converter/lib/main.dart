@@ -13,8 +13,10 @@ void main() async {
   // Disable maximize
   windowManager.setMaximizable(false);
 
+  windowManager.setTitle("Convertisseur de température");
+
   WindowOptions windowOptions = WindowOptions(
-    size: Size(700, 400),
+    size: Size(700, 425),
     center: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: false,

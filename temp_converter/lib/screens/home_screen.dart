@@ -50,6 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 16,
             ),
             cancelButton(),
+            SizedBox(
+              height: 24,
+            ),
+            Text(creditTxt),
           ],
         ),
       ),
